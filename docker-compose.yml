@@ -1,0 +1,21 @@
+services:
+  openwebui:
+      image: ghcr.io/open-webui/open-webui:main
+      container_name: openwebui
+      ports:
+        - "3000:8080"
+      volumes:
+        - open-webui:/app/backend/data
+
+  pipelines:
+      image: ghcr.io/open-webui/pipelines:main
+      container_name: pipelines
+      volumes:
+        - pipelines:/app/pipelines
+      restart: always
+      environment:
+        - PIPELINES_API_KEY=0p3n-w3bu!
+
+volumes:
+  open-webui: {}
+  pipelines: {}
